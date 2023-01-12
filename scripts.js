@@ -1,38 +1,44 @@
 const gridContainer = document.getElementById('grid-container');
 
-console.log(this);
+const playButton = document.getElementById('start');
+playButton.addEventListener('click',
 
-for (let i = 0; i < 100; i++) {
+    function () {
 
-    const newCell = document.createElement('div');
-    newCell.classList.add('cell');
-    newCell.addEventListener('click',
+        console.log('Cliccato play');
+        
+        gridContainer.innerHTML = '';
+
+        for (let i = 1; i <= 100; i++) {
+        
+            const newCell = createNewCell(i);
+            gridContainer.append(newCell);
+        
+        }
+
+    }
+
+);
+
+function createNewCell(num) {
+
+    const cell = document.createElement('div');
+    cell.classList.add('cell');
+    cell.addEventListener('click',
     
         function () {
-            
-            console.log(this);
-            console.log(this.classList);
 
-            if(this.classList.contains('clicked')){
-                this.classList.remove('clicked');
-            }
-            else{
-                this.classList.add('clicked');
-            }
+            console.log(num);
+            this.classList.add('clicked');
 
         }
     
     );
 
-    gridContainer.append(newCell);
+    cell.innerHTML = num;
+
+    return cell;
 
 }
 
-function myFunction() {
-    let x = document.getElementById("grid-container");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
+  
